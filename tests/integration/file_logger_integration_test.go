@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"testing"
 	"time"
-	"github.com/your-org/coco-logger/logger"
+	"github.com/a-digi/coco-logger"
 )
 
 func TestLogger_FileCreationAndContent(t *testing.T) {

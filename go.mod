@@ -1,3 +1,3 @@
-module github.com/your-org/coco-logger
+module github.com/a-digi/coco-logger
 
 go 1.21

@@ -2,7 +2,7 @@ package logger_test
 
 import (
 	"testing"
-	"github.com/your-org/coco-logger/logger"
+	"github.com/a-digi/coco-logger"
 )
 
 func TestNewLogger_EmptyLogDir(t *testing.T) {
