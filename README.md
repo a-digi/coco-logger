@@ -81,10 +81,16 @@ Example:
 
 ## Tests
 
-If tests are present, run them with:
+To run all unit and integration tests, use:
 
 ```bash
-go test ./...
+go test ./tests/unit/... ./tests/integration/... -v
+```
+
+If you want to run all tests recursively:
+
+```bash
+go test ./tests/... -v
 ```
 
 ## Versioning
