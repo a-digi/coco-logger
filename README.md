@@ -1,23 +1,23 @@
 # coco-logger
 
-Ein schlanker File-Logger für Go mit täglicher Ordnerstruktur und einfacher API.
+A lightweight file logger for Go with daily folder structure and simple API.
 
 ## Features
 
-- Schreiben in Logdateien mit automatischer, datumsbasierter Ordnerstruktur (YYYY/MM/DD)
-- Thread-sicheres Logging (Mutex-geschützt)
-- Einfache Methoden: Info, Warning, Error, Close
-- Konfigurierbarer Log-Verzeichnis-Pfad
+- Writes to log files with automatic, date-based folder structure (YYYY/MM/DD)
+- Thread-safe logging (mutex-protected)
+- Simple methods: Info, Warning, Error, Close
+- Configurable log directory path
 
 ## Installation
 
-Nutze Go Modules und füge das Modul deinem Projekt hinzu. Passe den Modulpfad an dein tatsächliches Repository an.
+Use Go Modules and add the module to your project. Adjust the module path to your actual repository.
 
 ```bash
 go get github.com/your-org/coco-logger
 ```
 
-Importiere den Logger aus dem `src/logger` Paket:
+Import the logger from the `src/logger` package:
 
 ```go
 import logger "github.com/your-org/coco-logger/src/logger"
@@ -33,7 +33,7 @@ import (
 )
 
 func main() {
-    // Lege dein Log-Verzeichnis fest (wird nach Datum strukturiert)
+    // Set your log directory (structured by date)
     log, err := logger.NewLogger("app.log", "./logs")
     if err != nil {
         panic(err)
@@ -46,27 +46,27 @@ func main() {
 }
 ```
 
-Die Logs werden in einem Pfad wie `./logs/2026/02/14/app.log` geschrieben.
+Logs are written to a path like `./logs/2026/02/14/app.log`.
 
 ## API
 
 - `NewLogger(fileName string, logDir string) (Logger, error)`
-  - Erstellt einen neuen Logger, der in `logDir/YYYY/MM/DD/fileName` schreibt
-  - `logDir` muss gesetzt werden (kein Fallback)
+  - Creates a new logger that writes to `logDir/YYYY/MM/DD/fileName`
+  - `logDir` must be set (no fallback)
 - `Info(msg string, args ...interface{})`
 - `Warning(msg string, args ...interface{})`
 - `Error(msg string, args ...interface{})`
-- `Close()` schließt die Dateiressource
+- `Close()` closes the file resource
 
 ### Format
 
-Jeder Logeintrag wird als einfache Textzeile geschrieben:
+Each log entry is written as a simple text line:
 
 ```
 [YYYY-MM-DD HH:MM:SS] [LEVEL] message\n
 ```
 
-Beispiel:
+Example:
 
 ```
 [2026-02-14 10:23:45] [INFO] service starting: version 0.1.0
@@ -74,23 +74,23 @@ Beispiel:
 
 ## Best Practices
 
-- Immer `Close()` aufrufen (z. B. mit `defer`), um Dateihandles zu schließen
-- Wähle ein sinnvolles `logDir` (z. B. `./logs` oder `/var/log/myapp`)
-- Gib strukturierte Informationen als Teil der Nachricht aus (key=value), z. B. `duration_ms=120`
-- Vermeide das Loggen sensibler Daten (PII/Secrets)
+- Always call `Close()` (e.g., with `defer`) to close file handles
+- Choose a meaningful `logDir` (e.g., `./logs` or `/var/log/myapp`)
+- Output structured information as part of the message (key=value), e.g., `duration_ms=120`
+- Avoid logging sensitive data (PII/secrets)
 
 ## Tests
 
-Falls Tests vorhanden sind, ausführen mit:
+If tests are present, run them with:
 
 ```bash
 go test ./...
 ```
 
-## Versionierung
+## Versioning
 
-Dieses Projekt folgt semantischer Versionierung, bis v1.0 können Breaking Changes auftreten.
+This project follows semantic versioning; breaking changes may occur until v1.0.
 
-## Lizenz
+## License
 
-Dieses Projekt ist unter der MIT-Lizenz veröffentlicht. Siehe `LICENSE`.
+This project is released under the MIT license. See `LICENSE`.
